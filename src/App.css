@@ -1,0 +1,17 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bungee', cursive;
+}
+
+.app { text-align: center; }
+.header { font-size: 70px; font-family: 'Bungee', cursive; }
+.subheader { font-size: 20px; font-family: 'Bungee', cursive; }
+
+a.link {
+  text-decoration: none;
+  color: #ff1769;
+}
+
+a.link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid #000;
+}
