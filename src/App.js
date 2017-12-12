@@ -4,6 +4,9 @@ import './App.css';
 import _ from 'lodash';
 import { Line, Chart } from 'react-chartjs-2';
 import moment from 'moment';
+import currencies from './supported-currencies.json';
+
+console.log(currencies)
 
 const REALTIME_BITCOIN_URL = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
@@ -15,7 +18,7 @@ class App extends Component {
     Chart.defaults.global.defaultFontColor = '#000';
     Chart.defaults.global.defaultFontSize = 16;
 
-    this.state = {historicalData: null, currency: "php"}
+    this.state = {historicalData: null, currency: "PHP"}
     this.onCurrencySelect = this.onCurrencySelect.bind(this)
   }
 
@@ -61,10 +64,12 @@ class App extends Component {
     }
   }
 
+  setCurrency (currency) {
+    this.setState({currency}, this.getBitcoinData)
+  }
+
   onCurrencySelect (e) {
-    this.setState({
-      currency: e.target.value
-    }, this.getBitcoinData)
+    this.setCurrency(e.target.value)
   }
 
   render() {
@@ -74,16 +79,20 @@ class App extends Component {
           <Header title="BITCOIN PRICE INDEX" />
 
           <div className="select-container">
-            <span style={{fontSize: 18, fontFamily: 'Bungee'}}> Select your currency: </span>
+            <span style={{fontSize: 18, fontFamily: 'Bungee'}}> Select your currency </span>
             <select value={this.state.currency} onChange={this.onCurrencySelect}>
-              <option value="usd"> USD </option>
-              <option value="eur"> EUR </option>
-              <option value="gbp"> GBP </option>
-              <option value="php"> PHP </option>
+              {currencies.map((obj, index) =>
+                <option key={`${index}-${obj.country}`} value={obj.currency}> {obj.currency} </option>
+              )}
             </select>
+            {
+              this.state.currency !== 'PHP' && (<div>
+                <a href="#" className="link" onClick={() => this.setCurrency('PHP')} style={{fontSize: 16, fontFamily: 'Bungee'}}> Back to PHP as default </a>
+              </div>)
+            }
           </div>
 
-          <div>
+          <div style={{marginTop: 10}}>
             <Line data={this.formatChartData()} height={250} />
           </div>
         </div>
