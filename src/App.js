@@ -8,8 +8,6 @@ import currencies from './supported-currencies.json';
 
 console.log(currencies)
 
-const REALTIME_BITCOIN_URL = "https://api.coindesk.com/v1/bpi/currentprice.json"
-
 class App extends Component {
   constructor (props) {
     super(props)
