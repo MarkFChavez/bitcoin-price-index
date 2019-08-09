@@ -30,10 +30,13 @@ a.link:hover {
   background: transparent;
   background-image: none;
   -webkit-appearance: none;
-  font-size: 30px;
   font-family: 'Bungee', cursive;
   cursor: pointer;
   color: #ff1769;
+  font-size: 18px;
+  max-width: 210px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 
 .select-container select:focus {
