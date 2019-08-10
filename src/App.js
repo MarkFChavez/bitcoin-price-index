@@ -16,7 +16,11 @@ class App extends Component {
     Chart.defaults.global.defaultFontColor = '#000';
     Chart.defaults.global.defaultFontSize = 16;
 
-    this.state = {historicalData: null, currency: "PHP"}
+    this.state = {
+      historicalData: null, 
+      currency: "PHP",
+      baseUrl: 'https://api.coindesk.com/v1/bpi/historical/close.json'
+    }
     this.onCurrencySelect = this.onCurrencySelect.bind(this)
   }
 
@@ -25,7 +29,10 @@ class App extends Component {
   }
 
   getBitcoinData () {
-    fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.state.currency}`)
+
+    const {baseUrl, currency} = this.state
+
+    fetch(`${baseUrl}?currency=${currency}`)
       .then(response => response.json())
       .then(historicalData => this.setState({historicalData}))
       .catch(e => e)
