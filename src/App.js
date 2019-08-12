@@ -19,7 +19,7 @@ class App extends Component {
     this.state = {
       historicalData: null, 
       currency: "PHP",
-      baseUrl: 'https://api.coindesk.com/v1/bpi/historical/close.json'
+      baseUrl: 'https://api.coindesk.com/'
     }
     this.onCurrencySelect = this.onCurrencySelect.bind(this)
   }
@@ -32,7 +32,7 @@ class App extends Component {
 
     const {baseUrl, currency} = this.state
 
-    fetch(`${baseUrl}?currency=${currency}`)
+    fetch(`${baseUrl}v1/bpi/historical/close.json?currency=${currency}`)
       .then(response => response.json())
       .then(historicalData => this.setState({historicalData}))
       .catch(e => e)
