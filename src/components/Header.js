@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Header = props => (
-  <header style={{marginBottom: 10}}>
+  <header>
     <div>
       <span className="header"> {props.title} </span>
     </div>

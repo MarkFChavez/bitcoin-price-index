@@ -1,8 +1,10 @@
-h1, h2, h3, h4, h5, h6 {
+* {
   font-family: 'Bungee', cursive;
 }
 
-span.bungee { font-family: 'Bungee', cursive; }
+header {
+  margin-bottom: 10px;
+}
 
 .app {
   max-width: 720px;
@@ -10,8 +12,13 @@ span.bungee { font-family: 'Bungee', cursive; }
   text-align: center;
 }
 
-.header { font-size: 60px; font-family: 'Bungee', cursive; }
-.subheader { font-size: 20px; font-family: 'Bungee', cursive; }
+.header {
+  font-size: 60px;
+}
+
+.subheader {
+  font-size: 20px;
+}
 
 a.link {
   text-decoration: none;
@@ -30,13 +37,12 @@ a.link:hover {
   background: transparent;
   background-image: none;
   -webkit-appearance: none;
-  font-family: 'Bungee', cursive;
   cursor: pointer;
   color: #ff1769;
   font-size: 18px;
   max-width: 210px;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .select-container select:focus {
