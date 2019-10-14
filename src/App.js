@@ -9,7 +9,7 @@ import currencies from './supported-currencies.json';
 console.log(currencies)
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     // chart.js defaults
@@ -17,29 +17,29 @@ class App extends Component {
     Chart.defaults.global.defaultFontSize = 16;
 
     this.state = {
-      historicalData: null, 
+      historicalData: null,
       currency: "PHP",
       baseUrl: 'https://api.coindesk.com/'
     }
     this.onCurrencySelect = this.onCurrencySelect.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getBitcoinData()
   }
 
-  getBitcoinData () {
+  getBitcoinData() {
 
-    const {baseUrl, currency} = this.state
+    const { baseUrl, currency } = this.state
 
     fetch(`${baseUrl}v1/bpi/historical/close.json?currency=${currency}`)
       .then(response => response.json())
-      .then(historicalData => this.setState({historicalData}))
+      .then(historicalData => this.setState({ historicalData }))
       .catch(e => e)
   }
 
-  formatChartData () {
-    const {bpi} = this.state.historicalData
+  formatChartData() {
+    const { bpi } = this.state.historicalData
 
     return {
       labels: _.map(_.keys(bpi), date => moment(date).format("ll")),
@@ -69,11 +69,11 @@ class App extends Component {
     }
   }
 
-  setCurrency (currency) {
-    this.setState({currency}, this.getBitcoinData)
+  setCurrency(currency) {
+    this.setState({ currency }, this.getBitcoinData)
   }
 
-  onCurrencySelect (e) {
+  onCurrencySelect(e) {
     this.setCurrency(e.target.value)
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
           <Header title="BITCOIN PRICE INDEX" />
 
           <div className="select-container">
-            <span style={{fontSize: 18, fontFamily: 'Bungee'}}> Select your currency: </span>
+            <span style={{ fontSize: 18 }}> Select your currency: </span>
             <select value={this.state.currency} onChange={this.onCurrencySelect}>
               {currencies.map((obj, index) =>
                 <option key={`${index}-${obj.country}`} value={obj.currency}> {obj.country} </option>
@@ -92,12 +92,12 @@ class App extends Component {
             </select>
             {
               this.state.currency !== 'PHP' && (<div>
-                <a href="#" className="link" onClick={() => this.setCurrency('PHP')} style={{color: "black", fontSize: 16, fontFamily: 'Bungee'}}> [CLICK HERE TO RESET] </a>
+                <a href="#" className="link" onClick={() => this.setCurrency('PHP')} style={{ color: "black", fontSize: 16 }}> [CLICK HERE TO RESET] </a>
               </div>)
             }
           </div>
 
-          <div style={{marginTop: 10}}>
+          <div style={{ marginTop: 10 }}>
             <Line data={this.formatChartData()} height={250} />
           </div>
         </div>
