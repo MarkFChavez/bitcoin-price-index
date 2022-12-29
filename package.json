@@ -10,7 +10,7 @@
     "react-chartjs": "^0.8.0",
     "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
